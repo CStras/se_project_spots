@@ -9,6 +9,12 @@
 **Intro**
   
 This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.  
+
+**Link**
+
+This is the link for the project hosted on Github Pages.
+
+    https://cstras.github.io/se_project_spots/
   
 **Figma**  
   
