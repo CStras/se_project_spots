@@ -1,0 +1,7 @@
+.cards {
+    display: grid;
+    width: 1280px;
+    height: 970px;
+    grid-template-columns: repeat(3, 413px);
+    grid-template-rows: repeat(3, 413px);
+}
