@@ -4,6 +4,7 @@
     margin: auto;
     display: flex;
     justify-content: space-between;
+    margin-top: 34px;
 }
 
 .avatar {
@@ -11,10 +12,11 @@
     height: 190px;
     flex-direction: row;
     display: flex;
-
+    padding: 0 0 20px 0;
 }
 
 .avatar img {
     width: 190px;
     height: 190px;
+    border-radius: 8px;
 }
