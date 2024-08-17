@@ -1,23 +1,60 @@
 .avatar {
-    width: 1280px;
+    max-width: 1280px;
     height: 210px;
-    margin: auto;
+    margin: 0 auto;
+    padding: 34px 0 20px 0;
     display: flex;
-    justify-content: space-between;
-    margin-top: 34px;
     border-bottom: 1px solid rgba(33, 33, 33, 0.4);
 }
 
 .avatar__content {
-    width: 505px;
     height: 190px;
     flex-direction: row;
     display: flex;
-    padding: 0 0 20px 0;
 }
 
-.avatar img {
+.avatar__image {
     width: 190px;
     height: 190px;
     border-radius: 8px;
+    margin-right: 20px;
+}
+
+.profile__column {
+    width: 420px;
+    height: 190px;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile__name {
+    margin: 0 0 12px;
+    padding: 0;
+}
+
+.profile__description {
+    margin: 0;
+    padding: 0;
+}
+
+.profile__edit-btn {
+    height: 16px;
+    margin-top: auto;
+    padding: 0;
+}
+
+.profile__add-btn {
+    margin-left: auto;
+    padding: 18px 24px 18px 34px;
+    width: 149px;
+    height: 52px;
+    background-color: #212121;
+    border-radius: 8px;
+    color: #FCF5E5;
+}
+
+.profile__plus-icon {
+    width: 12px;
+    height: 12px;
+    margin-right: 8px;
 }
