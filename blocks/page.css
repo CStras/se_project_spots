@@ -4,10 +4,9 @@
 }
 
 .page {
-    width: 1440xx;
-    height: 1416px;
     margin: 0;
     padding: 0;
     font-family: "Poppins", Arial, Helvetica, sans-serif;
     background: #FCF5E5;
+    height: 100vh;
 }

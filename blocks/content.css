@@ -6,43 +6,6 @@
     margin: 0 auto;
     border-bottom: 1px solid rgba(33, 33, 33, 0.4);
     gap: 20px;
-    padding: 0 0 40px 0;
+    padding: 0 20px 40px 20px;
     margin-top: 20px;
-}
-
-.card {
-    display: flex;
-    flex-direction: column;
-    width: 413px;
-    height: 445px;
-    position: relative;
-}
-
-.card p {
-    margin: 0;
-}
-
-.card__text-icon {
-    flex-direction: row;
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
-
-.card__image {
-    width: 413px;
-    height: 413px;
-    border-radius: 8px;
-}
-
-.card__like-image {
-    width: 23px;
-    height: 20px;
-}
-
-.card__text {
-    width: 119px;
-    height: 24px;
 }
