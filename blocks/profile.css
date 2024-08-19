@@ -49,7 +49,8 @@
 .profile__edit-btn {
     margin-top: auto;
     border: none;
-    background: none;
+    background: url('../images/pencil.svg');
+    background-repeat: no-repeat;
     display: flex;
     gap: 8px;
     padding: 0;
@@ -58,6 +59,17 @@
     font-size: 16px;
     line-height: 1;
     color: rgba(33, 33, 33, 0.7);
+}
+
+.profile__edit-btn-text {
+    margin-left: 20px;
+}
+
+.profile__edit-btn:hover {
+    color: rgba(33, 33, 33, 1);
+    cursor: pointer;
+    background: url('../images/pencil-hover.svg');
+    background-repeat: no-repeat;
 }
 
 .profile__new-post {
@@ -76,6 +88,11 @@
     font-size: 16px;
     line-height: 1;
     color: rgba(252, 245, 229, 1);
+}
+
+.profile__new-post:hover {
+    cursor: pointer;
+    background: rgba(33, 33, 33, 0.8);
 }
 
 .profile__plus-icon {
@@ -101,6 +118,8 @@
 
     .profile__column {
         margin: 0 0 20px;
+        justify-content: center;
+        align-items: center;
     }
 
     .profile__name {
@@ -115,8 +134,12 @@
     }
 
     .profile__edit-btn {
-        justify-content: center;
         margin-top: 0;
+        padding: 0 0 0 20px;
+    }
+
+    .profile__edit-btn-text {
+        margin-left: 0px;
     }
 
     .profile__new-post {

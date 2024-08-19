@@ -42,6 +42,12 @@
     background-color: transparent;
 }
 
+.card__like-btn:hover {
+    background-image: url('../images/Union-hover.svg');
+    border: none;
+    background-color: transparent;
+}
+
 @media screen and (max-width: 610px) {
     .card {
         width: 288px;
