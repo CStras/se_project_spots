@@ -15,6 +15,10 @@ This project is made so all the elements are displayed correctly on popular scre
 This is the link for the project hosted on Github Pages.
 
     https://cstras.github.io/se_project_spots/
+
+This is the link for the video submission.
+
+    https://drive.google.com/file/d/10UWIstU7s-RceqQXTfH5SF6VsEjV3GG_/view?usp=sharing
   
 **Figma**  
   
