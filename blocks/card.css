@@ -48,7 +48,7 @@
     background-color: transparent;
 }
 
-@media screen and (max-width: 610px) {
+@media screen and (max-width: 675px) {
     .card {
         width: 288px;
     }
