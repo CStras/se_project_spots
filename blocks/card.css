@@ -35,17 +35,18 @@
 }
 
 .card__like-btn {
-    background-image: url('../images/Union.svg');
+    background-image: url('../images/heart.svg');
     width: 23px;
     height: 20px;
     border: none;
+    cursor: pointer;
+    opacity: 0.4;
     background-color: transparent;
+    padding: 0;
 }
 
 .card__like-btn:hover {
-    background-image: url('../images/Union-hover.svg');
-    border: none;
-    background-color: transparent;
+    opacity: 1;
 }
 
 @media screen and (max-width: 675px) {
@@ -60,5 +61,12 @@
 
     .card__title {
         max-width: 170px;
+        font-size: 16px;
+        line-height: 1;
+    }
+
+    .card__like-btn {
+        width: 20px;
+        height: 18px;
     }
 }
