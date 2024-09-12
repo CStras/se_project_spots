@@ -75,9 +75,21 @@ function getCardElement(data) {
     const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
     const cardNameElement = cardElement.querySelector(".card__title");
     const imgElement = cardElement.querySelector(".card__image");
+    const cardLikeBtn = cardElement.querySelector(".card__like-btn");
+    const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
+
     cardNameElement.textContent = data.name;
     imgElement.alt = data.name;
     imgElement.src = data.link;
+
+    cardLikeBtn.addEventListener("click", () => {
+        cardLikeBtn.classList.toggle("card__like-btn_liked");
+    });
+
+    cardDeleteBtn.addEventListener("click", () => {
+        cardElement.remove();
+    });
+
     return cardElement;
 }
 
@@ -93,7 +105,8 @@ profileCloseBtn.addEventListener("click", () => {
 editFormElement.addEventListener("submit", handleEditFormSubmit);
 cardForm.addEventListener("submit", handleAddCardSubmit);
 
-/*for (let i = 0; i < initialCards.length; i++) {
+/*
+for (let i = 0; i < initialCards.length; i++) {
     const cardElement = getCardElement(initialCards[i]);   Replacing for loop with forEach method
     cardsList.prepend(cardElement);
 }

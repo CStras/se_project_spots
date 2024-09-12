@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     width: 413px;
+    position: relative;
 }
 
 .card__image {
@@ -35,18 +36,39 @@
 }
 
 .card__like-btn {
-    background-image: url('../images/heart.svg');
+    background: transparent url('../images/heart.svg') center no-repeat;
     width: 23px;
     height: 20px;
     border: none;
     cursor: pointer;
     opacity: 0.4;
-    background-color: transparent;
     padding: 0;
 }
 
 .card__like-btn:hover {
     opacity: 1;
+}
+
+.card__like-btn_liked {
+    background: url('../images/liked-img.svg') center no-repeat;
+    opacity: 1;
+}
+
+.card__like-btn_liked:hover {
+    opacity: 0.4;
+}
+
+.card__delete-btn {
+    background: transparent url(../images/delete-btn-default.svg) center no-repeat;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.card__delete-btn:hover {
+    background: transparent url(../images/delete-btn-hover.svg) center no-repeat;
 }
 
 @media screen and (max-width: 675px) {
