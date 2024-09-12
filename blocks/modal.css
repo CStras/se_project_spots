@@ -24,7 +24,17 @@
     box-sizing: border-box;
     padding: 32px 50px;
     position: relative;
-    border-radius: 8px;
+    border-radius: 10px;
+}
+
+.modal__container_type-preview {
+    padding: 0;
+}
+
+.modal__image {
+    width: 100%;
+    max-width: 80vw;
+    max-height: 80vh;
 }
 
 .modal__close-btn {
@@ -39,6 +49,8 @@
     background-image: url("../images/X.svg");
     padding: 0;
 }
+
+.modal__close-btn_type_preview {}
 
 .modal__close-btn:hover {
     opacity: 1;
@@ -130,6 +142,7 @@ input::placeholder {
     line-height: 1;
     color: rgba(33, 33, 33, 0.3);
 }
+
 
 @media screen and (max-width: 675px) {
     .modal {
