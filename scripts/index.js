@@ -23,6 +23,10 @@ const initialCards = [
         name: "Mountain house",
         link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg"
     },
+    {
+        name: "RandomIDK",
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg"
+    },
 ];
 
 const profileEditBtn = document.querySelector("#edit-profile-btn");
@@ -45,6 +49,10 @@ const editFormElement = editProfileModal.querySelector(".modal__form");
 
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
+
+const previewModal = document.querySelector("#preview-modal");
+const previewModalCloseBtn = previewModal.querySelector("#prview-close-btn");
+
 
 function openModal(modal) {
     modal.classList.add("modal_opened");
@@ -77,6 +85,9 @@ function getCardElement(data) {
     const imgElement = cardElement.querySelector(".card__image");
     const cardLikeBtn = cardElement.querySelector(".card__like-btn");
     const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
+    const previewImg = previewModal.querySelector(".modal__image");
+    const previewCap = previewModal.querySelector(".modal__caption");
+
 
     cardNameElement.textContent = data.name;
     imgElement.alt = data.name;
@@ -90,8 +101,21 @@ function getCardElement(data) {
         cardElement.remove();
     });
 
+    imgElement.addEventListener("click", () => {
+        openModal(previewModal);
+        previewImg.alt = data.name;
+        previewImg.src = data.link;
+        previewCap.textContent = data.name;
+    });
+
+    previewModalCloseBtn.addEventListener("click", () => {
+        closeModal(previewModal);
+    });
+
     return cardElement;
 }
+
+
 
 profileEditBtn.addEventListener("click", () => {
     editProfileName.value = profileName.textContent;
