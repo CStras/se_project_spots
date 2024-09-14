@@ -187,6 +187,8 @@ input::placeholder {
 
     .modal__container_type-preview {
         padding: 0;
+        position: relative;
+        left: -16px;
     }
 
     .modal__title {
@@ -196,6 +198,11 @@ input::placeholder {
 
     .modal__label {
         margin-bottom: 24px;
+    }
+
+    .modal__caption {
+        font-size: 16px;
+        line-height: 19.2px;
     }
 
     .modal__close-btn {
@@ -209,11 +216,14 @@ input::placeholder {
 
     .modal__image {
         border-radius: 4px;
+        width: 288px;
+        max-width: 90vw;
+        max-height: 90vh;
     }
 
     .modal__close-btn_type_preview {
-        right: 0;
-        top: -40px;
+        right: -30px;
+        top: -48px;
     }
 
     input::-ms-input-placeholder {
