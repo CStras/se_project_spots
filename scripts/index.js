@@ -61,8 +61,36 @@ function openModal(modal) {
     modal.classList.add("modal_opened");
 }
 
-function closeModal(modal) {
-    modal.classList.remove("modal_opened");
+function closeModal() {
+    const modalOpened = document.querySelector(".modal_opened");
+    if (isModalOpen()) {
+        modalOpened.classList.remove("modal_opened");
+    }
+}
+
+function initModal() {
+    document.addEventListener("click", function (event) {
+        if (isModalOpen() && isClickOutsideModal(event)) {
+            closeModal();
+        }
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (isModalOpen() && event.key === "Escape") {
+            closeModal();
+        }
+    });
+}
+
+function isClickOutsideModal(event) {
+    const modalOpened = document.querySelector(".modal_opened");
+    const modalContainer = modalOpened.querySelector(".modal__container");
+    return !modalContainer.contains(event.target);
+}
+
+function isModalOpen() {
+    const modalOpened = document.querySelector(".modal_opened");
+    return modalOpened !== null && modalOpened.classList.contains("modal_opened");
 }
 
 function handleEditFormSubmit(evt) {
@@ -139,7 +167,8 @@ initialCards.forEach((item) => { // first parem is the object, second can refere
     cardsList.prepend(cardElement);
 });
 
-addCardNewPost.addEventListener("click", () => {
+addCardNewPost.addEventListener("click", (evt) => {
+    evt.stopPropagation();
     openModal(addCardModal);
 });
 
@@ -149,4 +178,8 @@ addCardCloseBtn.addEventListener("click", () => {
 
 previewModalCloseBtn.addEventListener("click", () => {
     closeModal(previewModal);
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    initModal();
 });
