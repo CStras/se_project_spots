@@ -130,7 +130,8 @@ function getCardElement(data) {
         cardElement.remove();
     });
 
-    imgElement.addEventListener("click", () => {
+    imgElement.addEventListener("click", (evt) => {
+        evt.stopPropagation();
         openModal(previewModal);
         previewImg.alt = data.name;
         previewImg.src = data.link;
@@ -142,7 +143,8 @@ function getCardElement(data) {
 
 
 
-profileEditBtn.addEventListener("click", () => {
+profileEditBtn.addEventListener("click", (evt) => {
+    evt.stopPropagation();
     editProfileName.value = profileName.textContent;
     editProfileDescription.value = profileDescription.textContent;
     //resetValidation(cardForm, [editProfileName, editProfileDescription]);
