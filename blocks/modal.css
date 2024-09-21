@@ -124,9 +124,22 @@
     border: 1px solid rgba(33, 33, 33, 1);
 }
 
+.modal__error {
+    display: block;
+    color: rgba(255, 0, 0, 0.7);
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 17.6px;
+}
+
+.modal__input_type-error {
+    border: 1px solid rgba(255, 0, 0, 0.6);
+}
+
 .modal__submit-btn {
     width: 156px;
-    background-color: black;
+    background-color: rgba(33, 33, 33, 1);
     color: white;
     border-radius: 8px;
     padding: 18px 58px;
@@ -137,8 +150,13 @@
     opacity: 1;
 }
 
+.modal__submit-btn-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
 .modal__submit-btn:hover {
-    opacity: 0.6;
+    opacity: 0.8;
 }
 
 input {

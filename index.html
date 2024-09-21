@@ -61,15 +61,18 @@
             <div class="modal__container">
                 <button id="edit-profile-close-btn" class="modal__close-btn" type="submit"></button>
                 <h2 class="modal__title">Edit profile</h2>
-                <form name="edit-profile" class="modal__form">
+                <form name="edit-profile" class="modal__form" novalidate>
                     <label for="profile-name-input" class="modal__label">
                         Name
-                        <input type="text" id="profile-name-input" class="modal__input" placeholder="Type your name">
+                        <input type="text" id="profile-name-input" class="modal__input" placeholder="Type your name"
+                            required minlength="2" maxlength="40">
+                        <span id="profile-name-input-error" class="modal__error"></span>
                     </label>
                     <label for="profile-description-input" class="modal__label">
                         Description
                         <input type="text" id="profile-description-input" class="modal__input"
-                            placeholder="Describe yourself">
+                            placeholder="Describe yourself" required minlength="2" maxlength="200">
+                        <span id="profile-description-input-error" class="modal__error"></span>
                     </label>
                     <button class="modal__submit-btn" type="submit">Save</button>
                 </form>
@@ -81,16 +84,18 @@
             <div class="modal__container">
                 <button id="add-card-close-btn" class="modal__close-btn" type="submit"></button>
                 <h2 class="modal__title">New Post</h2>
-                <form name="edit-profile" class="modal__form">
+                <form name="edit-profile" class="modal__form" novalidate>
                     <label for="add-card-link-input" class="modal__label">
                         Image link
                         <input type="url" id="add-card-link-input" class="modal__input"
-                            placeholder="Paste a link to the picture" name="link">
+                            placeholder="Paste a link to the picture" name="link" required>
+                        <span id="add-card-link-input-error" class="modal__error"></span>
                     </label>
                     <label for="add-card-name-input" class="modal__label">
                         Caption
                         <input type="text" id="add-card-name-input" class="modal__input" placeholder="Type your caption"
-                            name="name">
+                            name="name" required minlength="2" maxlength="30">
+                        <span id="add-card-name-input-error" class="modal__error"></span>
                     </label>
                     <button class="modal__submit-btn" type="submit">Save</button>
                 </form>
@@ -106,6 +111,7 @@
             </div>
         </div>
     </div>
+    <script src="./scripts/validation.js"></script>
     <script src="./scripts/index.js" defer></script>
 </body>
 
