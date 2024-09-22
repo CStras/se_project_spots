@@ -44,12 +44,12 @@ const hasInvalidInput = (inputList) => {
 */
 
 const disableButton = (button, config) => {
-    button.disable = true;
+    button.disabled = true;
     button.classList.add(config.inactiveButtonClass);
 };
 
 const enableButton = (button, config) => {
-    button.disable = false;
+    button.disabled = false;
     button.classList.remove(config.inactiveButtonClass);
 };
 

@@ -59,33 +59,28 @@ const previewCap = previewModal.querySelector(".modal__caption");
 
 function openModal(modal) {
     modal.classList.add("modal_opened");
+    modal.addEventListener("click", isContainsModal);
+    document.addEventListener("keydown", isOpenAndEnterKey);
 }
 
-function closeModal() {
-    const modalOpened = document.querySelector(".modal_opened");
-    if (isModalOpen()) {
-        modalOpened.classList.remove("modal_opened");
+function closeModal(modal) {
+    modal.classList.remove("modal_opened");
+    modal.removeEventListener("click", isContainsModal);
+    document.removeEventListener("keydown", isOpenAndEnterKey);
+}
+
+function isOpenAndEnterKey(event) {
+    if (isModalOpen() && event.key === "Escape") {
+        const modalOpened = document.querySelector(".modal_opened");
+        closeModal(modalOpened);
+        console.log("1");
     }
 }
 
-function initModal() {
-    document.addEventListener("click", function (event) {
-        if (isModalOpen() && isClickOutsideModal(event)) {
-            closeModal();
-        }
-    });
-
-    document.addEventListener("keydown", function (event) {
-        if (isModalOpen() && event.key === "Escape") {
-            closeModal();
-        }
-    });
-}
-
-function isClickOutsideModal(event) {
-    const modalOpened = document.querySelector(".modal_opened");
-    const modalContainer = modalOpened.querySelector(".modal__container");
-    return !modalContainer.contains(event.target);
+function isContainsModal(event) {
+    if (event.target.classList.contains("modal_opened")) {
+        closeModal(event.target);
+    }
 }
 
 function isModalOpen() {
@@ -158,12 +153,6 @@ profileCloseBtn.addEventListener("click", () => {
 editFormElement.addEventListener("submit", handleEditFormSubmit);
 cardForm.addEventListener("submit", handleAddCardSubmit);
 
-/*
-for (let i = 0; i < initialCards.length; i++) {
-    const cardElement = getCardElement(initialCards[i]);   Replacing for loop with forEach method
-    cardsList.prepend(cardElement);
-}
-*/
 initialCards.forEach((item) => { // first parem is the object, second can reference the index of that object and third parem references the intial array
     const cardElement = getCardElement(item);
     cardsList.prepend(cardElement);
@@ -180,8 +169,4 @@ addCardCloseBtn.addEventListener("click", () => {
 
 previewModalCloseBtn.addEventListener("click", () => {
     closeModal(previewModal);
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    initModal();
 });
