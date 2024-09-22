@@ -72,10 +72,11 @@ function closeModal(modal) {
 }
 
 function handleEscape(event) {
-    // 💀 my face after 5+ resubmissions. Thank you for the quick reviews!
-    if (modalOpened && event.key === "Escape") {
+    if (event.key === "Escape") {
         const modalOpened = document.querySelector(".modal_opened");
-        closeModal(modalOpened);
+        if (modalOpened) {
+            closeModal(modalOpened);
+        }
     }
 }
 
