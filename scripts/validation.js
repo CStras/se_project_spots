@@ -36,12 +36,12 @@ const hasInvalidInput = (inputList) => {
 
 };
 
-/*const resetValidation = (formEl, inputList) => {
+const resetValidation = (formEl, inputList) => {
     inputList.forEach((input) => {
         hideInputError(formEl, input);
     });
-}; potential validation for reentering forms with error message
-*/
+};
+
 
 const disableButton = (button, config) => {
     button.disabled = true;

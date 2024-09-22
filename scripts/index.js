@@ -32,6 +32,7 @@ const initialCards = [
 const profileEditBtn = document.querySelector("#edit-profile-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const profileCloseBtn = editProfileModal.querySelector("#edit-profile-close-btn");
+const editModal = editProfileModal.querySelector(".modal__form");
 
 const addCardModal = document.querySelector("#add-card-modal");
 const addCardNewPost = document.querySelector(".profile__new-post");
@@ -56,36 +57,31 @@ const previewModalCloseBtn = previewModal.querySelector("#prview-close-btn");
 const previewImg = previewModal.querySelector(".modal__image");
 const previewCap = previewModal.querySelector(".modal__caption");
 
+const closeButtons = document.querySelectorAll(".modal__close-btn");
 
 function openModal(modal) {
     modal.classList.add("modal_opened");
-    modal.addEventListener("click", isContainsModal);
-    document.addEventListener("keydown", isOpenAndEnterKey);
+    modal.addEventListener("click", handleOverlay);
+    document.addEventListener("keydown", handleEscape);
 }
 
 function closeModal(modal) {
     modal.classList.remove("modal_opened");
-    modal.removeEventListener("click", isContainsModal);
-    document.removeEventListener("keydown", isOpenAndEnterKey);
+    modal.removeEventListener("click", handleOverlay);
+    document.removeEventListener("keydown", handleEscape);
 }
 
-function isOpenAndEnterKey(event) {
-    if (isModalOpen() && event.key === "Escape") {
-        const modalOpened = document.querySelector(".modal_opened");
+function handleEscape(event) {
+    const modalOpened = document.querySelector(".modal_opened");
+    if (modalOpened && event.key === "Escape") {
         closeModal(modalOpened);
-        console.log("1");
     }
 }
 
-function isContainsModal(event) {
+function handleOverlay(event) {
     if (event.target.classList.contains("modal_opened")) {
         closeModal(event.target);
     }
-}
-
-function isModalOpen() {
-    const modalOpened = document.querySelector(".modal_opened");
-    return modalOpened !== null && modalOpened.classList.contains("modal_opened");
 }
 
 function handleEditFormSubmit(evt) {
@@ -138,13 +134,17 @@ function getCardElement(data) {
 
 
 
-profileEditBtn.addEventListener("click", (evt) => {
-    evt.stopPropagation();
+profileEditBtn.addEventListener("click", () => {
     editProfileName.value = profileName.textContent;
     editProfileDescription.value = profileDescription.textContent;
-    //resetValidation(cardForm, [editProfileName, editProfileDescription]);
+    resetValidation(editModal, [editProfileName, editProfileDescription]);
     openModal(editProfileModal);
 });
+
+/* closeButtons.forEach((button) => {
+    const popup = button.closest('.modal');
+    button.addEventListener("click", closeModal(popup));
+}); investigate later for universal close button handler*/
 
 profileCloseBtn.addEventListener("click", () => {
     closeModal(editProfileModal);
