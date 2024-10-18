@@ -1,3 +1,6 @@
+import { enableValidation, settings, disableButton } from "./validation.js"
+
+
 const initialCards = [
     {
         name: "Val Thorens",
@@ -162,6 +165,7 @@ initialCards.forEach((item) => { // first parem is the object, second can refere
 
 addCardNewPost.addEventListener("click", (evt) => {
     evt.stopPropagation();
+    console.log("click");
     openModal(addCardModal);
 });
 
@@ -172,3 +176,6 @@ addCardCloseBtn.addEventListener("click", () => {
 previewModalCloseBtn.addEventListener("click", () => {
     closeModal(previewModal);
 });
+
+
+enableValidation(settings);
