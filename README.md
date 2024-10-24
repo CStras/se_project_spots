@@ -10,15 +10,14 @@
   
 This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.  
 
-**Link**
+**Links**
 
-This is the link for the project hosted on Github Pages.
+Here is the [link](https://cstras.github.io/se_project_spots/) for the project hosted on Github Pages.
 
-    https://cstras.github.io/se_project_spots/
+~~~
 
-This is the link for the video submission.
+Here is the [link](https://drive.google.com/file/d/10UWIstU7s-RceqQXTfH5SF6VsEjV3GG_/view?usp=sharing) for the video submission.
 
-    https://drive.google.com/file/d/10UWIstU7s-RceqQXTfH5SF6VsEjV3GG_/view?usp=sharing
   
 **Figma**  
   

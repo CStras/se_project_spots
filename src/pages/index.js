@@ -1,4 +1,9 @@
-import { enableValidation, settings, disableButton } from "./validation.js"
+import { enableValidation, settings, disableButton } from "../scripts/validation.js"
+import "./index.css"
+import headerSrc from "../images/logo.svg"
+import avatarSrc from "../images/avatar.jpg"
+import pencilSrc from "../images/pencil.svg"
+import plusSrc from "../images/plus-sign.svg"
 
 
 const initialCards = [
@@ -60,7 +65,15 @@ const previewModalCloseBtn = previewModal.querySelector("#prview-close-btn");
 const previewImg = previewModal.querySelector(".modal__image");
 const previewCap = previewModal.querySelector(".modal__caption");
 
-const closeButtons = document.querySelectorAll(".modal__close-btn");
+//image src elements
+const headerImg = document.getElementById("headerLogo");
+headerImg.src = headerSrc;
+const avaterImg = document.getElementById("profileAvatar");
+avaterImg.src = avatarSrc;
+const pencilImg = document.getElementById("profilePencil");
+pencilImg.src = pencilSrc;
+const plusImg = document.getElementById("profilePlusSign");
+plusImg.src = plusSrc;
 
 function openModal(modal) {
     modal.classList.add("modal_opened");
@@ -145,11 +158,6 @@ profileEditBtn.addEventListener("click", () => {
     resetValidation(editModal, [editProfileName, editProfileDescription]);
     openModal(editProfileModal);
 });
-
-/* closeButtons.forEach((button) => {
-    const popup = button.closest('.modal');
-    button.addEventListener("click", closeModal(popup));
-}); investigate later for universal close button handler*/
 
 profileCloseBtn.addEventListener("click", () => {
     closeModal(editProfileModal);
