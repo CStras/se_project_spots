@@ -4,7 +4,7 @@ import headerSrc from "../images/logo.svg"
 import avatarSrc from "../images/avatar.jpg"
 import pencilSrc from "../images/pencil.svg"
 import plusSrc from "../images/plus-sign.svg"
-import Api from "../scripts/Api.js";
+import Api from "../utils/Api.js";
 
 
 /* const initialCards = [
@@ -198,5 +198,5 @@ api.getInitialCards()
         cards.forEach((item) => {
             const cardElement = getCardElement(item);
             cardsList.prepend(cardElement);
-        });
-    });
+        })
+    }).catch(console.error); // note : passing func as a parem will take the first value as the parem of the function. 
