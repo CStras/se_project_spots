@@ -4,9 +4,10 @@ import headerSrc from "../images/logo.svg"
 import avatarSrc from "../images/avatar.jpg"
 import pencilSrc from "../images/pencil.svg"
 import plusSrc from "../images/plus-sign.svg"
+import Api from "../scripts/Api.js";
 
 
-const initialCards = [
+/* const initialCards = [
     {
         name: "Val Thorens",
         link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg"
@@ -35,7 +36,7 @@ const initialCards = [
         name: "A sunny bridge",
         link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg"
     },
-];
+]; */
 
 const profileEditBtn = document.querySelector("#edit-profile-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
@@ -74,6 +75,15 @@ const pencilImg = document.getElementById("profilePencil");
 pencilImg.src = pencilSrc;
 const plusImg = document.getElementById("profilePlusSign");
 plusImg.src = plusSrc;
+
+// API 
+const api = new Api({
+    baseUrl: "https://around-api.en.tripleten-services.com/v1",
+    headers: {
+        authorization: "9e68d7b8-65ac-4026-8ffb-a48d38eaf0d6",
+        "Content-Type": "application/json"
+    }
+});
 
 function openModal(modal) {
     modal.classList.add("modal_opened");
@@ -166,11 +176,6 @@ profileCloseBtn.addEventListener("click", () => {
 editFormElement.addEventListener("submit", handleEditFormSubmit);
 cardForm.addEventListener("submit", handleAddCardSubmit);
 
-initialCards.forEach((item) => { // first parem is the object, second can reference the index of that object and third parem references the intial array
-    const cardElement = getCardElement(item);
-    cardsList.prepend(cardElement);
-});
-
 addCardNewPost.addEventListener("click", (evt) => {
     evt.stopPropagation();
     console.log("click");
@@ -187,3 +192,11 @@ previewModalCloseBtn.addEventListener("click", () => {
 
 
 enableValidation(settings);
+
+api.getInitialCards()
+    .then((cards) => {
+        cards.forEach((item) => {
+            const cardElement = getCardElement(item);
+            cardsList.prepend(cardElement);
+        });
+    });
