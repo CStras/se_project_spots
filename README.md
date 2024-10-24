@@ -14,8 +14,6 @@ This project is made so all the elements are displayed correctly on popular scre
 
 Here is the [link](https://cstras.github.io/se_project_spots/) for the project hosted on Github Pages.
 
-~~~
-
 Here is the [link](https://drive.google.com/file/d/10UWIstU7s-RceqQXTfH5SF6VsEjV3GG_/view?usp=sharing) for the video submission.
 
   
