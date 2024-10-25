@@ -85,6 +85,15 @@ const api = new Api({
     }
 });
 
+api.getAppInfo()
+    .then(([cards]) => {
+        console.log(cards);
+        cards.forEach((item) => {
+            const cardElement = getCardElement(item);
+            cardsList.prepend(cardElement);
+        })
+    }).catch(console.error); // note : passing func as a parem will take the first value as the parem of the function. 
+
 function openModal(modal) {
     modal.classList.add("modal_opened");
     modal.addEventListener("click", handleOverlay);
@@ -192,11 +201,3 @@ previewModalCloseBtn.addEventListener("click", () => {
 
 
 enableValidation(settings);
-
-api.getInitialCards()
-    .then((cards) => {
-        cards.forEach((item) => {
-            const cardElement = getCardElement(item);
-            cardsList.prepend(cardElement);
-        })
-    }).catch(console.error); // note : passing func as a parem will take the first value as the parem of the function. 
