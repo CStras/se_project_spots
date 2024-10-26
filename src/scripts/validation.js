@@ -36,7 +36,7 @@ const hasInvalidInput = (inputList) => {
 
 };
 
-const resetValidation = (formEl, inputList) => {
+export const resetValidation = (formEl, inputList) => {
     inputList.forEach((input) => {
         hideInputError(formEl, input);
     });

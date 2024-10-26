@@ -1,9 +1,10 @@
-import { enableValidation, settings, disableButton } from "../scripts/validation.js"
+import { enableValidation, settings, disableButton, resetValidation } from "../scripts/validation.js"
 import "./index.css"
 import headerSrc from "../images/logo.svg"
 import avatarSrc from "../images/avatar.jpg"
 import pencilSrc from "../images/pencil.svg"
 import plusSrc from "../images/plus-sign.svg"
+import lightPencil from "../images/pencil-light.svg"
 import Api from "../utils/Api.js";
 
 
@@ -56,6 +57,14 @@ const profileDescription = document.querySelector(".profile__description");
 const editProfileName = editProfileModal.querySelector("#profile-name-input");
 const editProfileDescription = editProfileModal.querySelector("#profile-description-input");
 
+//avatar elements
+const avatarModal = document.querySelector("#avatar-modal");
+const avatarModalBtn = document.querySelector(".profile__avatar-btn");
+const avatarCloseBtn = avatarModal.querySelector("#edit-profile-close-btn");
+const avatarForm = avatarModal.querySelector("#edit-avatar-form");
+const avatarInput = avatarModal.querySelector("#profile-avatar-input");
+const avatarSubmitBtn = avatarModal.querySelector(".modal__submit-btn")
+
 const editFormElement = editProfileModal.querySelector(".modal__form");
 
 const cardTemplate = document.querySelector("#card-template");
@@ -66,7 +75,7 @@ const previewModalCloseBtn = previewModal.querySelector("#prview-close-btn");
 const previewImg = previewModal.querySelector(".modal__image");
 const previewCap = previewModal.querySelector(".modal__caption");
 
-//image src elements
+//image profile src elements
 const headerImg = document.getElementById("headerLogo");
 headerImg.src = headerSrc;
 const avaterImg = document.getElementById("profileAvatar");
@@ -75,6 +84,8 @@ const pencilImg = document.getElementById("profilePencil");
 pencilImg.src = pencilSrc;
 const plusImg = document.getElementById("profilePlusSign");
 plusImg.src = plusSrc;
+const profileEditHover = document.getElementById("hoverEditPencil");
+profileEditHover.src = lightPencil;
 
 // API 
 const api = new Api({
@@ -86,13 +97,20 @@ const api = new Api({
 });
 
 api.getAppInfo()
-    .then(([cards]) => {
-        console.log(cards);
+    .then(([cards, users]) => {
         cards.forEach((item) => {
             const cardElement = getCardElement(item);
             cardsList.prepend(cardElement);
         })
-    }).catch(console.error); // note : passing func as a parem will take the first value as the parem of the function. 
+
+        profileName.textContent = users.name;
+        profileDescription.textContent = users.about;
+        avaterImg.src = users.avatar;
+        console.log(users.avatar);
+
+
+    })
+    .catch(console.error); // note : passing func as a parem will take the first value as the parem of the function. 
 
 function openModal(modal) {
     modal.classList.add("modal_opened");
@@ -123,9 +141,13 @@ function handleOverlay(event) {
 
 function handleEditFormSubmit(evt) {
     evt.preventDefault();
-    profileName.textContent = editProfileName.value;
-    profileDescription.textContent = editProfileDescription.value;
-    closeModal(editProfileModal);
+    api.editUserInfo({ name: editProfileName.value, about: editProfileDescription.value })
+        .then((data) => {
+            profileName.textContent = data.name;
+            profileDescription.textContent = data.about;
+            closeModal(editProfileModal);
+        })
+        .catch(console.error);
 }
 
 function handleAddCardSubmit(evt) {
@@ -137,6 +159,22 @@ function handleAddCardSubmit(evt) {
     disableButton(cardSubmitButton, settings);
     closeModal(addCardModal);
 }
+
+function handleAvatarSubmit(evt) {
+    evt.preventDefault();
+    api.editAvatarInfo(avatarInput.value)
+        .then((avatarData) => {
+            if (avatarData.avatar) {
+                avaterImg.src = avatarData.avatar;
+                console.log(avatarData.avatar);
+                avaterImg.alt = "updated avatar";
+            }
+
+            closeModal(avatarModal);
+        })
+        .catch(console.error);
+}
+
 
 function getCardElement(data) {
     const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
@@ -184,6 +222,7 @@ profileCloseBtn.addEventListener("click", () => {
 
 editFormElement.addEventListener("submit", handleEditFormSubmit);
 cardForm.addEventListener("submit", handleAddCardSubmit);
+avatarForm.addEventListener("submit", handleAvatarSubmit);
 
 addCardNewPost.addEventListener("click", (evt) => {
     evt.stopPropagation();
@@ -194,6 +233,14 @@ addCardNewPost.addEventListener("click", (evt) => {
 addCardCloseBtn.addEventListener("click", () => {
     closeModal(addCardModal);
 });
+
+avatarModalBtn.addEventListener("click", () => {
+    openModal(avatarModal);
+});
+
+avatarCloseBtn.addEventListener("click", () => {
+    closeModal(avatarModal);
+})
 
 previewModalCloseBtn.addEventListener("click", () => {
     closeModal(previewModal);
