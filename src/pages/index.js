@@ -78,7 +78,7 @@ const previewCap = previewModal.querySelector(".modal__caption");
 //delete modal elements
 const deleteModal = document.querySelector("#delete-modal");
 const deleteCancelBtn = deleteModal.querySelector("#delete-cancel-btn");
-const deleteSubmitBtn = deleteModal.querySelector("#delete-submit-btn");
+const deleteSubmitForm = deleteModal.querySelector(".modal__form");
 let selectCard;
 let selectedCardId;
 
@@ -156,14 +156,21 @@ function handleEditFormSubmit(evt) {
         .catch(console.error);
 }
 
+function renderCard(item) {
+    const cardEl = getCardElement(item);
+    cardsList.prepend(cardEl);
+}
+
+
 function handleAddCardSubmit(evt) {
     evt.preventDefault();
-    const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
-    const cardEl = getCardElement(inputValues);
-    cardsList.prepend(cardEl);
-    evt.target.reset();
-    disableButton(cardSubmitButton, settings);
-    closeModal(addCardModal);
+    api.addCard({ name: cardNameInput.value, link: cardLinkInput.value })
+        .then((cardData) => {
+            renderCard(cardData);
+            disableButton(cardSubmitButton, settings);
+            closeModal(addCardModal);
+        });
+
 }
 
 function handleAvatarSubmit(evt) {
@@ -182,8 +189,6 @@ function handleAvatarSubmit(evt) {
 }
 
 function handleDeleteBtn(cardElement, cardId) {
-    console.log(cardId);
-    console.log(cardElement);
     selectCard = cardElement;
     selectedCardId = cardId;
     openModal(deleteModal);
@@ -191,8 +196,7 @@ function handleDeleteBtn(cardElement, cardId) {
 
 function handleDeleteSubmit(evt) {
     evt.preventDefault();
-    api
-        .removeCard(selectedCardId)
+    api.removeCard(selectedCardId)
         .then(() => {
             selectCard.remove();
             closeModal(deleteModal);
@@ -200,7 +204,7 @@ function handleDeleteSubmit(evt) {
         .catch(console.error);
 };
 
-deleteSubmitBtn.addEventListener("submit", handleDeleteSubmit);
+deleteSubmitForm.addEventListener("submit", handleDeleteSubmit);
 
 
 function getCardElement(data) {
@@ -220,7 +224,7 @@ function getCardElement(data) {
         cardLikeBtn.classList.toggle("card__like-btn_liked");
     });
 
-    cardDeleteBtn.addEventListener("click", () => handleDeleteBtn(cardElement, data));
+    cardDeleteBtn.addEventListener("click", () => handleDeleteBtn(cardElement, data._id));
 
     imgElement.addEventListener("click", (evt) => {
         evt.stopPropagation();
