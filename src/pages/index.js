@@ -1,11 +1,12 @@
 import { enableValidation, settings, disableButton, resetValidation } from "../scripts/validation.js"
 import "./index.css"
+import { setButtonText } from "../utils/helpers.js"
 import headerSrc from "../images/logo.svg"
 import avatarSrc from "../images/avatar.jpg"
 import pencilSrc from "../images/pencil.svg"
 import plusSrc from "../images/plus-sign.svg"
 import lightPencil from "../images/pencil-light.svg"
-import Api from "../utils/Api.js";
+import Api from "../utils/Api.js"
 
 
 /* const initialCards = [
@@ -146,6 +147,9 @@ function handleOverlay(event) {
 }
 
 function handleEditFormSubmit(evt) {
+    const editFormSubmitBtn = evt.submitter;
+    setButtonText(editFormSubmitBtn, true);
+
     evt.preventDefault();
     api.editUserInfo({ name: editProfileName.value, about: editProfileDescription.value })
         .then((data) => {
@@ -153,7 +157,10 @@ function handleEditFormSubmit(evt) {
             profileDescription.textContent = data.about;
             closeModal(editProfileModal);
         })
-        .catch(console.error);
+        .catch(console.error)
+        .finally(() => {
+            setButtonText(editFormSubmitBtn, false);
+        });
 }
 
 function renderCard(item) {
@@ -163,17 +170,27 @@ function renderCard(item) {
 
 
 function handleAddCardSubmit(evt) {
+    const addCardSubmitBtn = evt.submitter;
+    setButtonText(addCardSubmitBtn, true);
+
     evt.preventDefault();
     api.addCard({ name: cardNameInput.value, link: cardLinkInput.value })
         .then((cardData) => {
             renderCard(cardData);
             disableButton(cardSubmitButton, settings);
             closeModal(addCardModal);
+        })
+        .catch(console.error)
+        .finally(() => {
+            setButtonText(addCardSubmitBtn, false);
         });
 
 }
 
 function handleAvatarSubmit(evt) {
+    const avatarSubmitBtn = evt.submitter;
+    setButtonText(avatarSubmitBtn, true);
+
     evt.preventDefault();
     api.editAvatarInfo(avatarInput.value)
         .then((avatarData) => {
@@ -185,7 +202,10 @@ function handleAvatarSubmit(evt) {
 
             closeModal(avatarModal);
         })
-        .catch(console.error);
+        .catch(console.error)
+        .finally(() => {
+            setButtonText(avatarSubmitBtn, false);
+        });
 }
 
 function handleDeleteBtn(cardElement, cardId) {
@@ -195,13 +215,19 @@ function handleDeleteBtn(cardElement, cardId) {
 }
 
 function handleDeleteSubmit(evt) {
+    const deleteSubmitBtn = evt.submitter;
+    setButtonText(deleteSubmitBtn, true);
+
     evt.preventDefault();
     api.removeCard(selectedCardId)
         .then(() => {
             selectCard.remove();
             closeModal(deleteModal);
         })
-        .catch(console.error);
+        .catch(console.error)
+        .finally(() => {
+            setButtonText(deleteSubmitBtn, false, "Deleting...", "Delete");
+        });
 };
 
 deleteSubmitForm.addEventListener("submit", handleDeleteSubmit);
@@ -219,9 +245,20 @@ function getCardElement(data) {
     imgElement.alt = data.name;
     imgElement.src = data.link;
 
+    if (data.isLiked) {
+        cardLikeBtn.classList.add("card__like-btn_liked");
+    }
+
 
     cardLikeBtn.addEventListener("click", () => {
-        cardLikeBtn.classList.toggle("card__like-btn_liked");
+        if (cardLikeBtn.classList.contains("card__like-btn_liked")) {
+            api.toggleLike(data._id, true)
+                .then(cardLikeBtn.classList.toggle("card__like-btn_liked"));
+        } else {
+            api.toggleLike(data._id, false)
+                .then(cardLikeBtn.classList.toggle("card__like-btn_liked"));
+            console.log(data._id);
+        }
     });
 
     cardDeleteBtn.addEventListener("click", () => handleDeleteBtn(cardElement, data._id));
