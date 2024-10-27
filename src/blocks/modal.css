@@ -46,6 +46,14 @@
     gap: 32px;
 }
 
+.delete-modal__container .modal__close-btn {
+    position: absolute;
+    right: -40px;
+    top: 0;
+    background-image: url("../images/close-white-icon.svg");
+    opacity: 1;
+}
+
 .modal__container_type-preview {
     padding: 0;
     background-color: transparent;
