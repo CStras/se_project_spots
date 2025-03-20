@@ -2,14 +2,8 @@
 
 ### Overview  
 
-* Intro  
-* Figma  
-* Images  
+This is a front-end project focused on making API requests and handling responses. The website emulates a blog site just for images. Likes, deletes and any edits stay updated after the page is reloaded.
   
-**Intro**
-  
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.  
-
 **Links**
 
 Here is the [link](https://cstras.github.io/se_project_spots/) for the project hosted on Github Pages.
